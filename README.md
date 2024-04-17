@@ -1,8 +1,8 @@
 - 👋 Hi, I’m @m1szty
-- 👀 I’m interested in nothing
-- 🌱 I’m currently learning nothing
-- 💞️ I’m looking to collaborate on nobody
-- 📫 How to reach me you can't
+- 👀 I’m interested in: nothing
+- 🌱 I’m currently learning: nothing
+- 💞️ I’m looking to collaborate with: nobody
+- 📫 How to reach me you: can't
 - 😄 Pronouns: none
 - ⚡ Fun fact: no
 
