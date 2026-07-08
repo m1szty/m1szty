@@ -1,0 +1,135 @@
+#cloud-config
+# See the autoinstall documentation at:
+# https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html
+autoinstall:
+  apt:
+    disable_components: []
+    fallback: offline-install
+    geoip: true
+    mirror-selection:
+      primary:
+      - country-mirror
+      - arches: &id001
+        - amd64
+        - i386
+        uri: http://archive.ubuntu.com/ubuntu/
+      - arches: &id002
+        - s390x
+        - arm64
+        - armhf
+        - powerpc
+        - ppc64el
+        - riscv64
+        uri: http://ports.ubuntu.com/ubuntu-ports
+    preserve_sources_list: false
+    security:
+    - arches: *id001
+      uri: http://security.ubuntu.com/ubuntu/
+    - arches: *id002
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  codecs:
+    install: false
+  drivers:
+    install: false
+  identity:
+    hostname: timur-ubuntu
+    password: $6$avapbbqQgeNSVhy5$lYhMBD0HaP3iAfoSGszGyihflvO41wj2XJlZshSnaqUhlmDNjENTEhGFUWKfwhgNrdqu2q6NoBJJu2yoJKpKv1
+    realname: Timur
+    username: timur
+  kernel:
+    package: linux-generic-hwe-24.04
+  keyboard:
+    layout: us
+    toggle: null
+    variant: ''
+  locale: en_US.UTF-8
+  network:
+    ethernets:
+      enp4s0:
+        dhcp4: true
+    version: 2
+  oem:
+    install: auto
+  source:
+    id: ubuntu-desktop-minimal
+    search_drivers: false
+  ssh:
+    allow-pw: true
+    authorized-keys: []
+    install-server: false
+  storage:
+    config:
+    - transport: pcie
+      preserve: true
+      id: nvme-controller-nvme1
+      type: nvme_controller
+    - ptable: gpt
+      serial: XPG_GAMMIX_S11_Pro_2O4629A5KEGE_1
+      wwn: eui.0000000000000000000000024629a5ee
+      nvme_controller: nvme-controller-nvme1
+      path: /dev/nvme1n1
+      wipe: superblock
+      preserve: false
+      name: ''
+      grub_device: false
+      id: disk-nvme1n1
+      type: disk
+    - device: disk-nvme1n1
+      size: 1127219200
+      wipe: superblock
+      flag: boot
+      number: 1
+      preserve: false
+      grub_device: true
+      offset: 1048576
+      path: /dev/nvme1n1p1
+      id: partition-0
+      type: partition
+    - fstype: fat32
+      volume: partition-0
+      preserve: false
+      id: format-0
+      type: format
+    - device: disk-nvme1n1
+      size: 60000567296
+      wipe: superblock
+      number: 2
+      preserve: false
+      offset: 1128267776
+      path: /dev/nvme1n1p2
+      id: partition-1
+      type: partition
+    - fstype: ext4
+      volume: partition-1
+      preserve: false
+      id: format-1
+      type: format
+    - path: /
+      device: format-1
+      id: mount-1
+      type: mount
+    - device: disk-nvme1n1
+      size: 350001037312
+      wipe: superblock
+      number: 3
+      preserve: false
+      offset: 61128835072
+      path: /dev/nvme1n1p3
+      id: partition-2
+      type: partition
+    - fstype: ext4
+      volume: partition-2
+      preserve: false
+      id: format-2
+      type: format
+    - path: /home
+      device: format-2
+      id: mount-2
+      type: mount
+    - path: /boot/efi
+      device: format-0
+      id: mount-0
+      type: mount
+  timezone: Europe/Riga
+  updates: security
+  version: 1
