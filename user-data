@@ -1,0 +1,38 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: L_temp
+    realname: innohead
+    username: innohead
+    password: "$6$/iZZ9bKWYt1KY9Jv$IN.Q1VuGqAbrqeoOlXSVDRiP8YiXllmEi15nFGu8qhdOCoDerkg6LsBx.4YbxsMEw1gl99c77k.Wis80RaM7X/"
+  timezone: Europe/Kaliningrad
+  ssh:
+    install-server: true
+    authorized-keys:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCujmZ9X6wpm8Qx//aDaSvOMRgMj/ERlrqVMwSrDAHyZnTOHVzUc0Tes3SyGcmxfNaPRceBdu5ky8994PosEklK1lnOo6MhFcpAqg0b0OeAPXH37xUEz3Nph+8Xs4oNWmHrl2uWv2OEzm+odUkCAynccS2Hu/ac29Qc3FPQUY+DPQnpM9DctIWdf7WM7M/ArDFPREfoYUDy2OkwSFnTqccsGWUNIti0iYY1UikTTw6tvMIeAHEeXWp8H0AnrkNOQfEFF3MhcEXP2NYZo2X1kf2xF+LHLS5N4O72r1lxnu8feQ+0PisP4zt8NPAzmrdqjbfuYGYA0xi9cTXgZeCtONoIhERPtdvI/rJO9nKR+6QGbse5S81axrujWaZ8rTpQQSv6MQHZ8Oo7OhU020BB0VrxwMLdrH2aiPkGTlW6D8FFjY9ZSDbP7ud0tdtCiI62sAj9ZgzcgbnsHa8mueoVE79Y4Q0hStFnNcRDd3Xq3KcYrvi2iVKbqtpZ2lwkOVRMvnNn3J5BQeNBw/qkRietpylO9my8/3p1pYGeA8ZcG+mDz0FRVH/i8/hQVTVBlz7jFHmNpghdRiZggw=="
+    allow-pw: true    
+  storage:
+    layout:
+      name: lvm 
+      password: "shvm2Xqf"
+  packages:
+ #  - ubuntu-desktop-minimal
+    - lsb-release 
+    - sssd-ad 
+    - sssd-tools 
+    - realmd 
+    - adcli 
+    - clevis 
+    - clevis-tpm2 
+    - clevis-luks 
+    - clevis-initramfs 
+    - initramfs-tools 
+    - tss2
+  snaps:
+    - name: mattermost-desktop
+      channel: stable
+      classic: false
+  shutdown: poweroff  
+    
+      
